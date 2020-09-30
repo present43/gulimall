@@ -6,7 +6,7 @@
     <artifactId>com.liuzheng.gulimall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>gulimall</name>
-    <description>商城父POM文件-聚合</description>
+    <description>父POM文件-聚合</description>
     <packaging>pom</packaging>
 
     <modules>
@@ -15,6 +15,9 @@
         <module>gulimall-order</module>
         <module>liuz-store</module>
         <module>gulimall-product</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+        <module>gulimall-common</module>
     </modules>
 
 
