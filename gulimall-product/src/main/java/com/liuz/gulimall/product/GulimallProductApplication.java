@@ -3,6 +3,7 @@ package com.liuz.gulimall.product;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 整合Mybatis-plus 的步骤
@@ -18,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 五：告诉持久层框架映射文件的位置
  */
 
+@EnableDiscoveryClient
 @MapperScan("com.liuz.gulimall.product.dao")
 @SpringBootApplication
 public class GulimallProductApplication {

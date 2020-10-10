@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.liuz.gulimall.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,24 @@ import com.liuz.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    // 注入远程服务接口
+    @Autowired
+    CouponFeignService couponFeignService;
+
+
+    // 测试远程调用的方法
+    @RequestMapping("/coupon")
+    public R  test (){
+        MemberEntity memberEntity = new MemberEntity();
+        // M模拟一个会员 正常情况下是需要到数据库里去查询的
+        memberEntity.setNickname("铁柱");
+        // 远程获取此会员的优惠卷
+        R membercoupon = couponFeignService.membercoupon();
+
+        return  R.ok().put("member", memberEntity ).put("coupon",membercoupon.get("coupon"));
+
+    }
 
     /**
      * 列表

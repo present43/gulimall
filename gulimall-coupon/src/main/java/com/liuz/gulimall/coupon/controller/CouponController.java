@@ -1,5 +1,6 @@
 package com.liuz.gulimall.coupon.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -30,6 +31,16 @@ import com.liuz.common.utils.R;
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+
+    // 测试 会员远程调用服务 优惠卷
+    @RequestMapping("/member/list")
+    public R membercoupon(){
+        CouponEntity couponEntity = new CouponEntity();
+        couponEntity.setCouponName("满一百减199");
+        return R.ok().put("coupon", Arrays.asList(couponEntity));
+    }
+
 
     /**
      * 列表
