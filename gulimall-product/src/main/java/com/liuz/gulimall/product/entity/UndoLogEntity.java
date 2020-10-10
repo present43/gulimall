@@ -37,9 +37,9 @@ public class UndoLogEntity implements Serializable {
 	 */
 	private String context;
 	/**
-	 * 
+	 * 先改成 String  Longblob
 	 */
-	private Longblob rollbackInfo;
+	private String rollbackInfo;
 	/**
 	 * 
 	 */

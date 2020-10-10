@@ -13,7 +13,8 @@ import com.liuz.gulimall.product.entity.BrandEntity;
 import com.liuz.gulimall.product.service.BrandService;
 
 
-@Service("brandService")
+//@Service("brandService")
+@Service
 public class BrandServiceImpl extends ServiceImpl<BrandDao, BrandEntity> implements BrandService {
 
     @Override
