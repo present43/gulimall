@@ -47,10 +47,16 @@
             <version>8.0.17</version>
         </dependency>
 
-        <!--  服务注册发现、配置中心  使用 Nacos代替原生的 Eureka    -->
+        <!--  服务注册/发现相关功能  使用 Nacos代替原生的 Eureka    -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!--   服务的配置管理中心的相关依赖      -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
 
     </dependencies>
