@@ -20,7 +20,6 @@ import com.liuz.common.utils.R;
 
 /**
  * 采购信息
- *
  * @author liuz
  * @email 2351810431@qq.com
  * @date 2020-10-10 10:13:30
@@ -38,7 +37,6 @@ public class PurchaseController {
     // @RequiresPermissions("store:purchase:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 
