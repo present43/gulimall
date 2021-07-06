@@ -1,0 +1,35 @@
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: admin_route
+##          转到的地址 路由规则
+#          url: https://www.baidu.com
+##          断言
+#          predicates:
+#            - Path=/api/**
+##         RewritePath 路径重写 [满足请求 断言 重写发下面请求 ]  当请求到网关后 网关会去服务中心找 lb 后的服务 并直接把拼接到后面，所以需要网关转换
+#          filters:
+#             将逗号前的替换成逗号后面的   验证码是类似
+#          - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+#         精确路由写前面
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product_rout
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: admin_route
+#          lb :load balancing 负载均衡 //服务名
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+

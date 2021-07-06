@@ -1,6 +1,8 @@
 package com.liuz.gulimall.product.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,16 @@ import com.liuz.common.utils.R;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    /**
+     * 树状目录： 查询所有分类和子分类以树型菜单封装
+     */
+    @RequestMapping("/list/tree")
+    public R list(){
+        List<CategoryEntity> entities = categoryService.listWithTree();
+        return  R.ok().put("data", entities);
+    }
+
 
     /**
      * 列表
@@ -81,7 +93,9 @@ public class CategoryController {
     @RequestMapping("/delete")
     // @RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
+        // Arrays.asList(catIds) 将数组转换成一个集合
+        // categoryService.removeByIds(Arrays.asList(catIds));
+        categoryService.removeByCatIds(Arrays.asList(catIds));
 
         return R.ok();
     }

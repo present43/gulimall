@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 网关 ： 开启服务的注册与发现
+ * docker 重启 可能会导致其运行期间的数据丢失一般就不要去重启了。
  *
  */
 
