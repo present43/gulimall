@@ -1,10 +1,10 @@
 package com.liuz.gulimall.product.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
+import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +26,7 @@ import com.liuz.common.utils.R;
  * @email 2351810431@qq.com
  * @date 2020-09-30 14:21:06
  */
+@Slf4j
 @RestController
 @RequestMapping("product/category")
 public class CategoryController {
@@ -99,5 +100,24 @@ public class CategoryController {
 
         return R.ok();
     }
+
+    /**
+     * 批量拖拽 -- 排序 保存
+     * [] 看最外层的括号 是数组就用数组接
+     * 是 {} 为对象 就用list 接
+     */
+    @RequestMapping("/update/sort")
+    public R sort(@RequestBody CategoryEntity [] categoryEntities) {
+        // 参数校验
+        List<CategoryEntity> categoryEntityList = Arrays.asList(categoryEntities);
+        log.info("sort request {} ", JSONObject.toJSONString(categoryEntities));
+        categoryEntityList.removeIf(Objects::isNull);
+        if (categoryEntityList.size() == 0) {
+            return R.error("参数不能为空");
+        }
+        categoryService.updateBatchById(categoryEntityList);
+        return R.ok("排序成功");
+    }
+
 
 }
