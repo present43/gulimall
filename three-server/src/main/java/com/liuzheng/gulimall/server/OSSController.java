@@ -16,6 +16,10 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * @author hl
+ * @Data 2020/7/20
+ */
 @RestController
 @RequestMapping("/three")
 public class OSSController {
@@ -23,13 +27,13 @@ public class OSSController {
     @Resource
     private OSSClient ossClient;
 
-    @Value("${oss.endpoint}")
+    @Value("${spring.cloud.alicloud.oss.endpoint}")
     String endpoint;
 
-    @Value("${oss.bucket}")
+    @Value("${spring.cloud.alicloud.oss.bucket}")
     String bucket;
 
-    @Value("${oss.accessKey.id}")
+    @Value("${spring.cloud.alicloud.access-key}")
     String accessId;
 
     /**
@@ -41,7 +45,7 @@ public class OSSController {
     public R policy() {
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
         // callbackUrl为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
-        // String callbackUrl = "http://88.88.88.88:8888";
+//        String callbackUrl = "http://88.88.88.88:8888";
         String format = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         String dir = format + "/"; // 用户上传文件时指定的前缀。
         Map<String, String> respMap = null;
